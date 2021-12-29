@@ -10,6 +10,10 @@ The playlist also updates to contain different songs each time the program is ex
 I have found this to be an effective way to put together a custom playlist containing great recommendations in a very short amount of time! Please feel free to check out the full code and generated playlist below.
 </p>
 
+## Notes
+
+The program was built with Python 3.9 using Visual Studio Code in a Conda environment. The Spotipy Python library was used - "a lightweight Python library for the Spotify Web API".
+
 ## Links
 
 - [Full Code](https://github.com/terence-yeung/spotify/blob/main/spotify.py)
