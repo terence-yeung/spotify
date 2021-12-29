@@ -5,7 +5,7 @@ The motivation behind this project was to be able to quickly make a playlist for
   
 The program first creates an empty playlist with a name and description of my choice. Then, songs are recommended based on 'seed tracks' that I specify so Spotify can find songs similar to those. Furthermore, the API allows you to specify song attributes that the recommendations will have which is extremely helpful. In this example, I was building a playlist for a New Year's Eve gathering, so I was able to set attributes such as the minimum 'danceability', energy and valence (happiness) to ensure that only lively songs are included.
   
-The program also updates the playlist to contain different songs each time the program is executed (since recommendations are made at random). Alternatively, the code can easily be changed with small adjustments to create an entirely new playlist with a different name, with different song attributes for a different occasion, if desired.
+The playlist also updates to contain different songs each time the program is executed (since recommendations are made at random). Alternatively, the code can easily be changed with small adjustments to create an entirely new playlist with a different name, with different song attributes for a different occasion, if desired.
   
 I have found this to be an effective way to put together a custom playlist containing great recommendations in a very short amount of time! Please feel free to check out the full code and generated playlist below.
 </p>
