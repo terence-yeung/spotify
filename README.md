@@ -18,6 +18,8 @@ The program was built with Python 3.9 using Visual Studio Code in a Conda enviro
 
 - [Full Code](https://github.com/terence-yeung/spotify/blob/main/spotify.py)
 - [Spotify Playlist](https://open.spotify.com/playlist/4XTaR3MbyKvr6FwJgtv3kS?si=0f39e2b14fb340d5)
+- [Spotify Web API Documentation](https://developer.spotify.com/documentation/web-api/)
+- [Spotipy Documentation](https://spotipy.readthedocs.io/en/2.19.0/)
 
 
 ## Future Updates
