@@ -2,6 +2,8 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import spotipy.util as util
 
+# SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, SPOTIPY_REDIRECT_URI set as environmental variables
+
 user_id = "21ozahrkhnk47leielel36bfq"
 scope = "user-library-read playlist-modify-public"
 
