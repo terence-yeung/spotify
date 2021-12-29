@@ -10,35 +10,46 @@ token = util.prompt_for_user_token(user_id, scope)
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
 
 # Playlist details
-playlist_name = "Feel Good Tunes"
-playlist_desc = "A good mood playlist created using the Spotify Web API in Python"
+playlist_name = "NYE Bangers"
+playlist_desc = "A playlist for the last day of the year. Created using the Spotify Web API in Python"
 
+playlists = sp.user_playlists(user_id)
 
 # Create empty playlist
 def create_playlist():
-    sp.user_playlist_create(
-        user_id,
-        playlist_name,
-        description=playlist_desc,
-    )
+    playlist_names = []
+
+    for i in playlists["items"]:
+        playlist_names.append(i["name"])
+
+    if playlist_name not in playlist_names:
+        sp.user_playlist_create(
+            user_id,
+            playlist_name,
+            description=playlist_desc,
+        )
+
+    global new_playlists
+
+    new_playlists = sp.user_playlists(user_id)
 
 
 # Get track recommendations
 def get_track_recommendations():
     song1_id = "3lUQpvfWFcxZC3RYAVGE7F"  # Pink Sweat$ - I Feel Good
     song2_id = "4aHrviUXxabPdIgWxdYQLt"  # Fiji Blue - Butterflies
-    song3_id = "2xWaMntwciToo1CbOxWmbX"  # wave to earth - light
-    song4_id = "21fmk5RzKY0lQyyX1i64Xw"  # ØZI - hair tie
-    song5_id = "4MOUAKzdy6wa2AJHuuxIi8"  # Majid Jordan - Summer Rain
+    song3_id = "5HCyWlXZPP0y6Gqq8TgA20"  # The Kid LAROI, Justin Bieber - STAY
+    song4_id = "4Gt2kh3QbAGU6yquOWn4aW"  # Lauv, Conan Gray - Fake
+    song5_id = "3gwoz4xZuye0agjYgrC2je"  # Troye Sivan - Easy
 
     seed_tracks = [song1_id, song2_id, song3_id, song4_id, song5_id]
 
     recommendations = sp.recommendations(
         seed_tracks=seed_tracks,
         country="GB",
-        limit=50,
-        min_energy=0.3,
-        max_energy=0.8,
+        limit=100,
+        min_danceability=0.7,
+        min_energy=0.5,
         max_instrumentalness=0.3,
         min_valence=0.5,
     )
@@ -48,18 +59,15 @@ def get_track_recommendations():
     track_id = [track["id"] for track in recommendations["tracks"]]
 
 
-# Add to playlist
+# Add songs to playlist/ Replace songs in playlist
 def add_to_playlist():
-    playlists = sp.user_playlists(user_id)
-    for i in playlists:
-        if playlists["items"][0]["name"] == playlist_name:
-            playlist_id = playlists["items"][0]["id"]
+    for i in new_playlists["items"]:
+        if i["name"] == playlist_name:
+            sp.user_playlist_replace_tracks(user_id, i["id"], track_id)
             break
 
-    sp.playlist_add_items(playlist_id, track_id)
 
-
-# Full function
+# Main function
 def main():
     create_playlist()
     get_track_recommendations()
